@@ -1,7 +1,8 @@
 Ubuntu:
 
-sshpass -e ssh $IP sudo apt-get update &&
-sshpass -e ssh $IP sudo apt-get install -y ccache cmake make g++-multilib gdb pkg-config libz-dev realpath python-pexpect manpages-dev git zlib1g-dev linux-tools-common linux-tools-generic python-dev libgnutls-dev libacl1-dev tightvncserver vncviewer libreoffice rpm ninja-build &&
+sshpass -e ssh $IP sudo apt-get update -y &&
+sshpass -e ssh $IP sudo apt-get dist-upgrade -y &&
+sshpass -e ssh $IP sudo apt-get install -y rpm ccache cmake make g++-multilib gdb pkg-config zlib1g-dev realpath python-pexpect git zlib1g-dev linux-tools-common linux-tools-generic python-dev libgnutls-dev libacl1-dev tightvncserver vncviewer libreoffice ninja-build manpages-dev &&
 sshpass -e ssh $IP rm -rf ~/rr &&
 sshpass -e ssh $IP mkdir ~/rr &&
 sshpass -e scp -r ~/rr/rr $IP:~/rr &&
