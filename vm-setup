@@ -1,10 +1,10 @@
 Ubuntu:
 
 sshpass -e ssh $IP sudo apt-get update -y &&
-sshpass -e ssh $IP sudo apt-get dist-upgrade -y &&
-sshpass -e ssh $IP sudo apt-get install -y rpm ccache cmake make g++-multilib gdb pkg-config zlib1g-dev realpath python-pexpect git zlib1g-dev linux-tools-common linux-tools-generic python-dev libgnutls-dev libacl1-dev tightvncserver vncviewer libreoffice ninja-build manpages-dev &&
+sshpass -e ssh $IP sudo apt-get dist-upgrade -f -y &&
+sshpass -e ssh $IP sudo apt-get install -y rpm ccache cmake make g++-multilib gdb pkg-config zlib1g-dev python3-pexpect git zlib1g-dev python-dev libacl1-dev tightvncserver xtightvncviewer firefox libreoffice ninja-build manpages-dev capnproto libcapnp-dev &&
 sshpass -e ssh $IP rm -rf ~/rr &&
-sshpass -e ssh $IP mkdir ~/rr &&
+sshpass -e ssh $IP mkdir -p ~/rr &&
 sshpass -e scp -r ~/rr/rr $IP:~/rr &&
 sshpass -e scp -r ~/rr/rr-vm-testing $IP:~/rr &&
 sshpass -e ssh $IP ~/rr/rr-vm-testing/build-and-test.sh >& ~/tmp/$IP.output
@@ -14,12 +14,14 @@ sshpass -e ssh $IP ~/rr/rr-vm-testing/build-and-test.sh >& ~/tmp/$IP.output
 
 Fedora:
 
-sshpass -e ssh $IP sudo dnf update
-sshpass -e ssh $IP sudo dnf install -y ccache cmake make gcc gcc-c++ gdb glibc-devel glibc-devel.i686 libstdc++-devel libstdc++-devel.i686 zlib-devel python-pexpect man-pages perf python-devel gnutls-devel libacl-devel openldap-devel tigervnc-server-minimal rpm-build vncviewer ninja-build &&
+sshpass -e ssh $IP sudo dnf update -y &&
+sshpass -e ssh $IP sudo dnf install -y ccache cmake make gcc gcc-c++ gdb glibc-devel glibc-devel.i686 libstdc++-devel libstdc++-devel.i686 zlib-devel python3-pexpect man-pages perf gnutls-devel libacl-devel openldap-devel tigervnc-server-minimal rpm-build ninja-build capnproto capnproto-libs capnproto-devel libstdc++-static libreoffice-core &&
 sshpass -e ssh $IP rm -rf ~/rr &&
-sshpass -e ssh $IP mkdir ~/rr &&
+sshpass -e ssh $IP mkdir -p ~/rr &&
 sshpass -e scp -r ~/rr/rr $IP:~/rr &&
 sshpass -e scp -r ~/rr/rr-vm-testing $IP:~/rr &&
 sshpass -e ssh $IP ~/rr/rr-vm-testing/build-and-test.sh >& ~/tmp/$IP.output
+
+
 
 

@@ -6,7 +6,7 @@ mkdir ~/tmp
 rm -rf ~/rr/obj
 mkdir ~/rr/obj
 cd ~/rr/obj
-cmake ../rr || exit
+cmake -DCMAKE_BUILD_TYPE=RELEASE -Dstaticlibs=TRUE -Dstrip=TRUE ../rr || exit
 make -j8 -C ~/rr/obj || exit
 make -j8 -C ~/rr/obj check || exit
 rm -rf ~/.local/share/rr/*
